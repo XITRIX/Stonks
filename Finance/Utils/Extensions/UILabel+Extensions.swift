@@ -12,4 +12,9 @@ extension UILabel {
         self.text = text
         isHidden = text.isNilOrEmpty
     }
+
+    var textWithVisibility: String? {
+        get { text }
+        set { setText(newValue) }
+    }
 }

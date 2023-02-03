@@ -7,8 +7,18 @@
 
 import Foundation
 
-// MARK: - MarketSummaryModel
-struct FinanceMarketSummaryModel: Codable, Hashable {
+struct FinanceMarketSummaryResponseModel: Codable {
+    let marketSummaryAndSparkResponse: FinanceMarketSummaryResultModel?
+}
+
+// MARK: - FinanceSummaryResponseModel
+struct FinanceMarketSummaryResultModel: Codable {
+    let result: [MarketSummaryModel]?
+}
+
+
+// MARK: - FinanceMarketSummaryModel
+struct MarketSummaryModel: Codable, Hashable {
     let exchangeTimezoneName, fullExchangeName: String?
     let symbol: String
     let gmtOffSetMilliseconds, exchangeDataDelayedBy, firstTradeDateMilliseconds: Int?
@@ -27,18 +37,22 @@ struct FinanceMarketSummaryModel: Codable, Hashable {
     let regularMarketPreviousClose: RegularMarket
 }
 
+// MARK: - Language
 enum Language: String, Codable, Hashable {
     case enUS = "en-US"
 }
 
+// MARK: - MarketState
 enum MarketState: String, Codable, Hashable {
     case pre = "PRE"
     case prepre = "PREPRE"
     case post = "POST"
     case postpost = "POSTPOST"
     case regular = "REGULAR"
+    case closed = "CLOSED"
 }
 
+// MARK: - Region
 enum Region: String, Codable, Hashable {
     case us = "US"
 }
@@ -54,6 +68,6 @@ struct Spark: Codable, Hashable {
     let previousClose, chartPreviousClose: Double?
     let symbol: String?
     let timestamp: [Int]?
-    let close: [Double]?
+    let close: [Double?]?
     let dataGranularity, end, start: Int?
 }

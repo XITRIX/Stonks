@@ -48,7 +48,7 @@ private extension StocksViewController {
 
     func setupTableView() {
         tableView.register(StockCell.self)
-//        tableView.dataSource = dataSource
+        tableView.dataSource = dataSource
     }
 
     func setupSearchBar() {
@@ -75,7 +75,9 @@ private extension StocksViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, StockCellModel>()
         snapshot.appendSections([0])
         snapshot.appendItems(models)
-        dataSource.apply(snapshot)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot)
+        }
     }
 }
 

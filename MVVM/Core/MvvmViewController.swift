@@ -35,6 +35,16 @@ public class MvvmViewController<ViewModel: MvvmViewModelProtocol>: UIViewControl
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.willAppear()
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisappear()
+    }
 }
 
 internal extension MvvmViewController {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StockCell: UITableViewCell {
+class StockCell: MvvmTableViewCell {
     // MARK: - IBOutlets
     @IBOutlet private var symbol: UILabel!
     @IBOutlet private var name: UILabel!
@@ -25,18 +25,21 @@ class StockCell: UITableViewCell {
     func setup(with model: StockCellModel) {
         symbol.setText(model.symbol)
         name.setText(model.name)
-        value.setText(model.value)
-        changes.setText(model.change)
-        changesHolder.backgroundColor = color(for: model.isPositive)
+
+        bind(in: disposeBag) {
+            value.rx.textWithVisibility <- model.value
+            changes.rx.textWithVisibility <- model.change
+            changesHolder.rx.backgroundColor <- model.isPositive.map(color(for:))
+        }
     }
 }
 
 // MARK: - Private functions
 private extension StockCell {
-    func color(for positive: Bool?) -> UIColor {
+    func color(for positive: Bool?) -> UIColor? {
         switch positive {
         case .some(let positive):
-            return positive ? .systemGreen : .systemRed
+            return positive ? .stockGreen : .stockRed
         case .none:
             return .systemGray
         }

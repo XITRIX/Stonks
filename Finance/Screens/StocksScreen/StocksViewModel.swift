@@ -9,14 +9,6 @@ import Foundation
 import RxRelay
 import RxSwift
 
-struct StockCellModel: Hashable {
-    var symbol: String
-    var name: String?
-    var value: String
-    var change: String
-    var isPositive: Bool?
-}
-
 protocol StocksViewModelProtocol: MvvmViewModelProtocol {
     var stocks: Observable<[StockCellModel]> { get }
     var searchHint: BehaviorRelay<String?> { get }
@@ -29,27 +21,21 @@ protocol StocksViewModelProtocol: MvvmViewModelProtocol {
 
 class StocksViewModel: MvvmViewModel, StocksViewModelProtocol {
     // MARK: - Public
-    let allStocks = BehaviorRelay<[FinanceMarketSummaryModel]>(value: [])
+    let allStocks = BehaviorRelay<[StockCellModel]>(value: [])
     let searchHint = BehaviorRelay<String?>(value: "Search for stonks")
     let searchQuery = BehaviorRelay<String?>(value: nil)
     let isLoading = BehaviorRelay<Bool>(value: true)
 
     var stocks: Observable<[StockCellModel]> {
-        Observable.combineLatest(allStocks, searchQuery).map { allStocks, searchQuery in
-            guard let searchQuery,
-                  !searchQuery.isEmpty
-            else { return allStocks.map { $0.cellModel }}
-
-            return allStocks
-                .filter { $0.shortName?.localizedCaseInsensitiveContains(searchQuery) ?? false }
-                .map { $0.cellModel }
-        }
+        Observable.combineLatest(allStocks, searchQuery).map(filterStocks)
     }
 
     // MARK: - Init
     required init() {
         super.init()
         title.accept("Stonks!")
+        // Disabled to not spend API calls. Enable it later
+        // timer = makeTimer()
         Task {
             await refreshStocks()
             isLoading.accept(false)
@@ -58,75 +44,54 @@ class StocksViewModel: MvvmViewModel, StocksViewModelProtocol {
 
     // MARK: - Public
     func selectStock(_ stock: StockCellModel) {
-        navigate(to: StockDetailsViewModel.self, with: stock.symbol, by: .detail)
+        navigate(to: StockDetailsViewModel.self, with: stock, by: .detail)
     }
 
     func refreshStocks() async {
         await apiCall {
-            allStocks.accept(try await api.getStocks())
+            let stocks = try await api.getStocks()
+            await updateStocks(with: stocks.map(StockCellModel.init(from:)))
         }
+    }
+
+    func updateStocks(with stocks: [StockCellModel]) async {
+        var temp = [StockCellModel]()
+        for stock in stocks {
+            if let res = allStocks.value.get({ $0.symbol == stock.symbol }) {
+                res.applyChanges(from: stock)
+                temp.append(res)
+            } else {
+                temp.append(stock)
+            }
+        }
+        allStocks.accept(temp)
     }
 
     // MARK: - Private
     @Injected private var api: FinanceApiProtocol
+    private var timer: Timer!
+    private let refrashRate: Double = 8
 }
 
+// MARK: - Private functions
 private extension StocksViewModel {
-    func filterStocks(_ stocks: [FinanceMarketSummaryModel], filter: String?) -> [StockCellModel] {
+    func filterStocks(_ stocks: [StockCellModel], filter: String?) -> [StockCellModel] {
         guard let filter,
               !filter.isEmpty
-        else { return stocks.map { $0.cellModel }}
+        else { return stocks }
 
         return stocks
             .filter {
-                $0.shortName?.localizedCaseInsensitiveContains(filter) ?? false ||
-                $0.symbol.localizedCaseInsensitiveContains(filter)
+                $0.name?.localizedCaseInsensitiveContains(filter) ?? false ||
+                    $0.symbol.localizedCaseInsensitiveContains(filter)
             }
-            .map { $0.cellModel }
     }
-}
 
-private extension FinanceMarketSummaryModel {
-    var cellModel: StockCellModel {
-        let value: Double =
-            self.spark.close?.last ??
-            self.regularMarketPreviousClose.raw
-
-        let change: Double = self.regularMarketPreviousClose.raw - value
-
-        let isPositive: Bool?
-        if change > 0 {
-            isPositive = true
-        } else if change < 0 {
-            isPositive = false
-        } else {
-            isPositive = nil
+    func makeTimer() -> Timer {
+        .scheduledTimer(withTimeInterval: refrashRate, repeats: true) { [weak self] _ in
+            guard let self else { return }
+            Task { await self.refreshStocks() }
         }
-
-        let changeText = self.changeFormatter.string(from: NSNumber(value: change)) ?? "None"
-
-        return .init(symbol: self.symbol,
-                     name: self.shortName,
-                     value: self.formatter.string(from: NSNumber(value: value)) ?? "None",
-                     change: changeText,
-                     isPositive: isPositive)
-    }
-
-    private var formatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .currency
-        formatter.currencySymbol = ""
-        return formatter
-    }
-
-    private var changeFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .currency
-        formatter.positivePrefix = "+"
-        formatter.currencySymbol = ""
-        return formatter
     }
 }
 

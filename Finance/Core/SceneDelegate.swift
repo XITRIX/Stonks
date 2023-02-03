@@ -13,8 +13,6 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     override func routing(in router: Router) {
-        router.register(TestViewController<TestViewModel>.self)
-        router.register(SecondViewController<SecondViewModel>.self)
         router.register(StocksViewController<StocksViewModel>.self)
         router.register(StockDetailsViewController<StockDetailsViewModel>.self)
     }

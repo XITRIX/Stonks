@@ -13,6 +13,9 @@ public protocol MvvmViewModelProtocol: AnyObject {
     var title: BehaviorRelay<String?> { get }
     var navigationService: NavigationProtocol! { get set }
     init()
+
+    func willAppear()
+    func willDisappear()
 }
 
 public protocol MvvmViewModelWithProtocol: MvvmViewModelProtocol {
@@ -28,6 +31,9 @@ public class MvvmViewModel: MvvmViewModelProtocol {
         binding()
     }
     open func binding() {}
+
+    open func willAppear() {}
+    open func willDisappear() {}
 }
 
 public class MvvmViewModelWith<Model>: MvvmViewModel, MvvmViewModelWithProtocol {
