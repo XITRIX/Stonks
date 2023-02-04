@@ -29,6 +29,7 @@ protocol StockDetailsViewModelProtocol: MvvmViewModelWithProtocol {
     var eps: BehaviorRelay<String?> { get }
 
     var chart: BehaviorRelay<ChartData> { get }
+    var chartIsLoading: BehaviorRelay<Bool> { get }
 }
 
 class StockDetailsViewModel: MvvmViewModelWith<StockCellModel>, StockDetailsViewModelProtocol {
@@ -52,6 +53,7 @@ class StockDetailsViewModel: MvvmViewModelWith<StockCellModel>, StockDetailsView
     let eps = BehaviorRelay<String?>(value: "")
 
     let chart = BehaviorRelay<ChartData>(value: ChartData(segments: []))
+    let chartIsLoading = BehaviorRelay<Bool>(value: true)
 
     required init() {
         super.init()
@@ -70,9 +72,12 @@ class StockDetailsViewModel: MvvmViewModelWith<StockCellModel>, StockDetailsView
 extension StockDetailsViewModel {
     private func reloadTitle(_ symbol: String) {
         Task {
+            chartIsLoading.accept(true)
+            
             await apiCall {
                 applyDetails(try await api.getStockDetails(symbol))
                 applyChart(try await api.getStockChart(symbol, interval: .twoMinutes, range: .day))
+                chartIsLoading.accept(false)
             }
         }
     }
@@ -102,19 +107,24 @@ extension StockDetailsViewModel {
         guard let quite = chart.indicators.quote.first
         else { return }
 
-        let segments: [ChartSegment] = chart.timestamp.enumerated().map { item in
-            let date = Date(timeIntervalSince1970: Double(item.element))
+        let dateOffset = chart.meta.currentTradingPeriod!.regular!.gmtoffset!
+        let segments: [ChartSegment] = chart.timestamp.enumerated().compactMap { item in
+            let date = Date(timeIntervalSince1970: Double(item.element + dateOffset))
             let price = quite.high[item.offset]
+
+            guard let price else { return nil }
+
             return ChartSegment(date: date, price: price)
         }
 
-        self.chart.accept(ChartData(segments: segments, start: chart.meta.chartPreviousClose))
+        self.chart.accept(ChartData(segments: segments, start: chart.meta.chartPreviousClose, isPositive: change.value >= 0))
     }
 }
 
 struct ChartData {
     var segments: [ChartSegment]
     var start: Double?
+    var isPositive: Bool = true
 }
 
 struct ChartSegment: Identifiable {

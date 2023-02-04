@@ -11,12 +11,6 @@ import UIKit
 import RxSwift
 import RxRelay
 
-struct A: Identifiable {
-    let id = UUID()
-    var x: Int
-    var y: Int
-}
-
 class StocksViewData: ObservableObject {
     @Published var data: ChartData
 
@@ -29,25 +23,30 @@ struct StocksView: View {
     @ObservedObject var data: StocksViewData
 
     var body: some View {
-        Chart {
-            if let start = data.data.start {
-                RuleMark(y: .value("Last chart close", start))
-                    .lineStyle(.init(lineWidth: 0.5, lineCap: .round, lineJoin: .round, dash: [2]))
-                    .foregroundStyle(.gray)
-            }
-            ForEach(data.data.segments) { item in
-                LineMark(x: .value("Hour", item.date), y: .value("Price", item.price))
-                    .lineStyle(.init(lineWidth: 2, lineCap: .square, lineJoin: .miter))
-                    .foregroundStyle(Color(uiColor: .stockRed))
+        let prices = data.data.segments.map{ $0.price }
+        if !prices.isEmpty {
+            Chart {
+                if let start = data.data.start {
+                    RuleMark(y: .value("Last chart close", start))
+                        .lineStyle(.init(lineWidth: 0.5, lineCap: .round, lineJoin: .round, dash: [2]))
+                        .foregroundStyle(.gray)
+                }
+                ForEach(data.data.segments) { item in
+                    LineMark(x: .value("Hour", item.date), y: .value("Price", item.price))
+                        .lineStyle(.init(lineWidth: 2, lineCap: .square, lineJoin: .miter))
+                        .foregroundStyle(Color(uiColor: data.data.isPositive ? .stockGreen : .stockRed))
 
+                }
+            }
+            .chartYScale(domain: prices.min()! ... prices.max()!)
+            .chartXAxis {
+                AxisMarks(values: .automatic(desiredCount: 5))
             }
         }
-        .chartYScale(domain: .automatic(includesZero: false, reversed: false))
     }
 }
 
 class StocksChartView: UIHostingController<StocksView> {
-    private let data = StocksViewData(data: ChartData(segments: []))
     let chart = BehaviorRelay<ChartData>(value: ChartData(segments: []))
 
     init() {
@@ -59,7 +58,6 @@ class StocksChartView: UIHostingController<StocksView> {
                     self.data.data = data
                 }
             }
-//            rootView.$data <- chart
         }
     }
 
@@ -68,5 +66,7 @@ class StocksChartView: UIHostingController<StocksView> {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Private
+    private let data = StocksViewData(data: ChartData(segments: []))
     private let disposeBag = DisposeBag()
 }

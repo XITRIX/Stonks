@@ -13,6 +13,7 @@
                 <outlet property="averageVolumeLabel" destination="fEl-e4-DLb" id="4or-y1-B54"/>
                 <outlet property="betaLabel" destination="nlI-pD-Chm" id="1cn-Pg-V5F"/>
                 <outlet property="changeLabel" destination="DUW-k4-hoI" id="NOT-Rp-QRF"/>
+                <outlet property="chartLoadingIndicator" destination="YQl-cM-SwW" id="Wdj-kG-c0Y"/>
                 <outlet property="chartsHolder" destination="X52-IF-7iu" id="xXb-Jl-o0D"/>
                 <outlet property="currencyLabel" destination="UPw-WI-Sqq" id="Tti-VE-x8G"/>
                 <outlet property="epsLabel" destination="uTW-iV-VfH" id="gWi-gb-hfn"/>
@@ -37,7 +38,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmF-3N-EQS">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmF-3N-EQS">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UsI-rR-fXE">
@@ -148,9 +149,12 @@
                                             <rect key="frame" x="0.0" y="112.33333333333331" width="393" height="248"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X52-IF-7iu" userLabel="chartsHolder">
-                                                    <rect key="frame" x="16" y="8" width="361" height="232"/>
+                                                    <rect key="frame" x="16" y="12" width="361" height="224"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="YQl-cM-SwW">
+                                                    <rect key="frame" x="178" y="105.66666666666667" width="37" height="37.000000000000014"/>
+                                                </activityIndicatorView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lom-zc-I9j" userLabel="Separator">
                                                     <rect key="frame" x="16" y="247" width="361" height="1"/>
                                                     <color key="backgroundColor" systemColor="separatorColor"/>
@@ -167,9 +171,11 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="248" id="245-XN-VXF"/>
-                                                <constraint firstItem="X52-IF-7iu" firstAttribute="top" secondItem="ChV-B8-6nz" secondAttribute="top" constant="8" id="L2I-li-Ao5"/>
+                                                <constraint firstItem="YQl-cM-SwW" firstAttribute="centerX" secondItem="ChV-B8-6nz" secondAttribute="centerX" id="5tX-yU-SMr"/>
+                                                <constraint firstItem="YQl-cM-SwW" firstAttribute="centerY" secondItem="ChV-B8-6nz" secondAttribute="centerY" id="Jrz-bB-gzH"/>
+                                                <constraint firstItem="X52-IF-7iu" firstAttribute="top" secondItem="ChV-B8-6nz" secondAttribute="top" constant="12" id="L2I-li-Ao5"/>
                                                 <constraint firstAttribute="bottom" secondItem="lom-zc-I9j" secondAttribute="bottom" id="NC9-cs-tSl"/>
-                                                <constraint firstAttribute="bottom" secondItem="X52-IF-7iu" secondAttribute="bottom" constant="8" id="VXl-ev-Oib"/>
+                                                <constraint firstAttribute="bottom" secondItem="X52-IF-7iu" secondAttribute="bottom" constant="12" id="VXl-ev-Oib"/>
                                                 <constraint firstItem="X52-IF-7iu" firstAttribute="leading" secondItem="ChV-B8-6nz" secondAttribute="leadingMargin" id="fPJ-yV-A2y"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="X52-IF-7iu" secondAttribute="trailing" id="gkm-RQ-hKf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="lom-zc-I9j" secondAttribute="trailing" id="hPO-zB-fuV"/>

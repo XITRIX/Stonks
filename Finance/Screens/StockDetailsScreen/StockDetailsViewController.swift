@@ -29,6 +29,7 @@ class StockDetailsViewController<VM: StockDetailsViewModelProtocol>: MvvmViewCon
 
     @IBOutlet private var summaryScrollView: UIScrollView!
     @IBOutlet private var chartsHolder: UIView!
+    @IBOutlet private var chartLoadingIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,7 @@ class StockDetailsViewController<VM: StockDetailsViewModelProtocol>: MvvmViewCon
             epsLabel.rx.text <- viewModel.eps.map(dashIfEmpty)
 
             charts.chart <- viewModel.chart
+            chartLoadingIndicator.rx.isAnimating <- viewModel.chartIsLoading
         }
     }
 

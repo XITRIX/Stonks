@@ -71,8 +71,8 @@ struct ChartModelAdjclose: Codable, Hashable {
 
 // MARK: - ChartModelQuote
 struct ChartModelQuote: Codable, Hashable {
-    let volume: [Int]
-    let quoteOpen, close, low, high: [Double]
+    let volume: [Int?]
+    let quoteOpen, close, low, high: [Double?]
 
     enum CodingKeys: String, CodingKey {
         case volume
