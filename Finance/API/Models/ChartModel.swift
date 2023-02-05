@@ -36,7 +36,7 @@ struct ChartModelChart: Codable, Hashable {
 // MARK: - ChartModel
 struct ChartModel: Codable, Hashable {
     let meta: ChartModelMeta
-    let timestamp: [Int]
+    let timestamp: [Int]?
     let indicators: ChartModelIndicators
 }
 
@@ -71,8 +71,8 @@ struct ChartModelAdjclose: Codable, Hashable {
 
 // MARK: - ChartModelQuote
 struct ChartModelQuote: Codable, Hashable {
-    let volume: [Int?]
-    let quoteOpen, close, low, high: [Double?]
+    let volume: [Int?]?
+    let quoteOpen, close, low, high: [Double?]?
 
     enum CodingKeys: String, CodingKey {
         case volume
@@ -107,7 +107,7 @@ struct ChartModelMeta: Codable, Hashable {
 
 // MARK: - ChartModelCurrentTradingPeriod
 struct ChartModelCurrentTradingPeriod: Codable, Hashable {
-    let pre, regular, post: ChartModelPost?
+    let pre, regular, post: ChartModelPost
 }
 
 //
@@ -118,6 +118,6 @@ struct ChartModelCurrentTradingPeriod: Codable, Hashable {
 
 // MARK: - ChartModelPost
 struct ChartModelPost: Codable, Hashable {
-    let timezone: String?
-    let end, start, gmtoffset: Int?
+    let timezone: String
+    let end, start, gmtoffset: Int
 }

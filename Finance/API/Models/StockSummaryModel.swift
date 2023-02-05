@@ -27,7 +27,7 @@ struct StockSummaryModel: Codable, Hashable {
     let netSharePurchaseActivity: StockSummaryModelNetSharePurchaseActivity?
     let majorHoldersBreakdown: StockSummaryModelMajorHoldersBreakdown?
     let financialData: StockSummaryModelFinancialData?
-    let quoteType: StockSummaryModelQuoteType
+    let quoteType: StockSummaryModelQuoteType?
     let institutionOwnership: StockSummaryModelOwnership?
     let calendarEvents: StockSummaryModelCalendarEvents?
     let summaryDetail: StockSummaryModelSummaryDetail

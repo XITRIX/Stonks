@@ -26,6 +26,13 @@ class StocksViewController<VM: StocksViewModelProtocol>: MvvmTableViewController
         }
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in } completion: { [self] _ in
+            self.tableView.reloadData()
+        }
+    }
+
     // MARK: - Private
     private lazy var delegates = Delegates(parent: self)
     private lazy var dataSource: UITableViewDiffableDataSource<Int, StockCellModel> = makeDataSource()
@@ -67,6 +74,7 @@ private extension StocksViewController {
         UITableViewDiffableDataSource<Int, StockCellModel>(tableView: tableView) { tableView, indexPath, itemIdentifier in
             let cell: StockCell = tableView.dequeue(for: indexPath)
             cell.setup(with: itemIdentifier)
+            cell.isCompact = tableView.safeAreaLayoutGuide.layoutFrame.width < 320
             return cell
         }
     }

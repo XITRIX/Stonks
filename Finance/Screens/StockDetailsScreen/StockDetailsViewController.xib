@@ -13,6 +13,7 @@
                 <outlet property="averageVolumeLabel" destination="fEl-e4-DLb" id="4or-y1-B54"/>
                 <outlet property="betaLabel" destination="nlI-pD-Chm" id="1cn-Pg-V5F"/>
                 <outlet property="changeLabel" destination="DUW-k4-hoI" id="NOT-Rp-QRF"/>
+                <outlet property="chardErrorContainer" destination="CHN-Lr-WAi" id="Xry-FG-Qbw"/>
                 <outlet property="chartLoadingIndicator" destination="YQl-cM-SwW" id="Wdj-kG-c0Y"/>
                 <outlet property="chartsHolder" destination="X52-IF-7iu" id="xXb-Jl-o0D"/>
                 <outlet property="currencyLabel" destination="UPw-WI-Sqq" id="Tti-VE-x8G"/>
@@ -23,6 +24,7 @@
                 <outlet property="nameLabel" destination="mqO-Mf-eL3" id="I5E-nt-gWY"/>
                 <outlet property="onOpenLabel" destination="ima-z4-JrA" id="506-iU-5Rt"/>
                 <outlet property="peLabel" destination="RT9-wI-ywm" id="nKB-3W-HZU"/>
+                <outlet property="scrollView" destination="FmF-3N-EQS" id="wbw-7p-W7a"/>
                 <outlet property="summaryLabel" destination="UGi-N7-XIR" id="siE-0a-aRX"/>
                 <outlet property="summaryScrollView" destination="Ri0-wp-d0E" id="Vdw-JO-H14"/>
                 <outlet property="symbolLabel" destination="Z4e-Su-MC0" id="9WX-Af-vfI"/>
@@ -38,7 +40,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmF-3N-EQS">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmF-3N-EQS">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UsI-rR-fXE">
@@ -167,11 +169,30 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-Lr-WAi">
+                                                    <rect key="frame" x="56" y="83.333333333333343" width="281" height="81.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4A-BL-aQJ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There may be a problem with the server or network. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVQ-ts-RoM">
+                                                            <rect key="frame" x="0.0" y="20.333333333333343" width="281" height="61"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="248" id="245-XN-VXF"/>
                                                 <constraint firstItem="YQl-cM-SwW" firstAttribute="centerX" secondItem="ChV-B8-6nz" secondAttribute="centerX" id="5tX-yU-SMr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CHN-Lr-WAi" secondAttribute="trailing" constant="40" id="BNc-oh-33J"/>
+                                                <constraint firstItem="CHN-Lr-WAi" firstAttribute="centerX" secondItem="ChV-B8-6nz" secondAttribute="centerXWithinMargins" id="Fu3-Ne-Jfa"/>
                                                 <constraint firstItem="YQl-cM-SwW" firstAttribute="centerY" secondItem="ChV-B8-6nz" secondAttribute="centerY" id="Jrz-bB-gzH"/>
                                                 <constraint firstItem="X52-IF-7iu" firstAttribute="top" secondItem="ChV-B8-6nz" secondAttribute="top" constant="12" id="L2I-li-Ao5"/>
                                                 <constraint firstAttribute="bottom" secondItem="lom-zc-I9j" secondAttribute="bottom" id="NC9-cs-tSl"/>
@@ -179,13 +200,15 @@
                                                 <constraint firstItem="X52-IF-7iu" firstAttribute="leading" secondItem="ChV-B8-6nz" secondAttribute="leadingMargin" id="fPJ-yV-A2y"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="X52-IF-7iu" secondAttribute="trailing" id="gkm-RQ-hKf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="lom-zc-I9j" secondAttribute="trailing" id="hPO-zB-fuV"/>
+                                                <constraint firstItem="CHN-Lr-WAi" firstAttribute="leading" secondItem="ChV-B8-6nz" secondAttribute="leadingMargin" constant="40" id="meZ-Yc-2Vq"/>
+                                                <constraint firstItem="CHN-Lr-WAi" firstAttribute="centerY" secondItem="ChV-B8-6nz" secondAttribute="centerY" id="tYA-nP-Vng"/>
                                                 <constraint firstItem="lom-zc-I9j" firstAttribute="leading" secondItem="ChV-B8-6nz" secondAttribute="leadingMargin" id="wHs-We-Zsu"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o73-uX-Sz3">
                                             <rect key="frame" x="0.0" y="360.33333333333331" width="393" height="88"/>
                                             <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ri0-wp-d0E">
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ri0-wp-d0E">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="88"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5V4-JH-Dhs">
@@ -530,6 +553,8 @@
                                                         <constraint firstItem="5V4-JH-Dhs" firstAttribute="leading" secondItem="Ri0-wp-d0E" secondAttribute="leading" id="Vb4-vQ-Yxp"/>
                                                         <constraint firstItem="5V4-JH-Dhs" firstAttribute="top" secondItem="Ri0-wp-d0E" secondAttribute="top" id="w7T-xA-GpO"/>
                                                     </constraints>
+                                                    <viewLayoutGuide key="contentLayoutGuide" id="Sub-3y-GYi"/>
+                                                    <viewLayoutGuide key="frameLayoutGuide" id="BO2-io-SiD"/>
                                                 </scrollView>
                                             </subviews>
                                             <constraints>
@@ -540,6 +565,9 @@
                                             </constraints>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5V4-JH-Dhs" firstAttribute="width" relation="greaterThanOrEqual" secondItem="X52-IF-7iu" secondAttribute="width" id="UOH-bN-VBw"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -29,8 +29,10 @@
 		7C9420C8298D64D30059CE14 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C9420C7298D64D30059CE14 /* Colors.xcassets */; };
 		7C9420CC298D65DC0059CE14 /* UIColor+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9420CB298D65DC0059CE14 /* UIColor+Assets.swift */; };
 		7C9420CE298D82F90059CE14 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9420CD298D82F90059CE14 /* Formatter.swift */; };
-		7C9420D1298DA0100059CE14 /* StocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9420D0298DA0100059CE14 /* StocksView.swift */; };
+		7C9420D1298DA0100059CE14 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9420D0298DA0100059CE14 /* ChartView.swift */; };
 		7C9420D3298DB8140059CE14 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9420D2298DB8140059CE14 /* ChartModel.swift */; };
+		7C9420D5298E71870059CE14 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9420D4298E71870059CE14 /* ChartViewController.swift */; };
+		7C9420D7298FCAA50059CE14 /* MvvmModel+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9420D6298FCAA50059CE14 /* MvvmModel+API.swift */; };
 		7CC04789298D16A20039B6D4 /* UITableView+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC04788298D16A20039B6D4 /* UITableView+Registration.swift */; };
 		7CC0478B298D1A850039B6D4 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC0478A298D1A850039B6D4 /* UILabel+Extensions.swift */; };
 		7CC0478D298D3DB60039B6D4 /* MvvmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC0478C298D3DB60039B6D4 /* MvvmTableViewCell.swift */; };
@@ -101,8 +103,10 @@
 		7C9420C7298D64D30059CE14 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		7C9420CB298D65DC0059CE14 /* UIColor+Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Assets.swift"; sourceTree = "<group>"; };
 		7C9420CD298D82F90059CE14 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		7C9420D0298DA0100059CE14 /* StocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksView.swift; sourceTree = "<group>"; };
+		7C9420D0298DA0100059CE14 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7C9420D2298DB8140059CE14 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
+		7C9420D4298E71870059CE14 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		7C9420D6298FCAA50059CE14 /* MvvmModel+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MvvmModel+API.swift"; sourceTree = "<group>"; };
 		7CC04788298D16A20039B6D4 /* UITableView+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Registration.swift"; sourceTree = "<group>"; };
 		7CC0478A298D1A850039B6D4 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		7CC0478C298D3DB60039B6D4 /* MvvmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmTableViewCell.swift; sourceTree = "<group>"; };
@@ -260,7 +264,8 @@
 		7C9420CF298DA0040059CE14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7C9420D0298DA0100059CE14 /* StocksView.swift */,
+				7C9420D0298DA0100059CE14 /* ChartView.swift */,
+				7C9420D4298E71870059CE14 /* ChartViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 			children = (
 				7CE9C953298C426E00FCD7F8 /* Models */,
 				7CE9C951298C424F00FCD7F8 /* FinanceApi.swift */,
+				7C9420D6298FCAA50059CE14 /* MvvmModel+API.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -561,7 +567,7 @@
 				7CE9C952298C424F00FCD7F8 /* FinanceApi.swift in Sources */,
 				7CC04791298D41BD0039B6D4 /* Array+Extensions.swift in Sources */,
 				7C01A536298C88700071364D /* MvvmTableViewController.swift in Sources */,
-				7C9420D1298DA0100059CE14 /* StocksView.swift in Sources */,
+				7C9420D1298DA0100059CE14 /* ChartView.swift in Sources */,
 				7CC04789298D16A20039B6D4 /* UITableView+Registration.swift in Sources */,
 				7CC0478B298D1A850039B6D4 /* UILabel+Extensions.swift in Sources */,
 				7C01A529298C5F160071364D /* StockDetailsViewController.swift in Sources */,
@@ -573,6 +579,7 @@
 				7CE9C8EC298BF8FC00FCD7F8 /* AppDelegate.swift in Sources */,
 				7CE9C93A298C067D00FCD7F8 /* Injected.swift in Sources */,
 				7C9420D3298DB8140059CE14 /* ChartModel.swift in Sources */,
+				7C9420D7298FCAA50059CE14 /* MvvmModel+API.swift in Sources */,
 				7C01A544298D0C520071364D /* StockCell.swift in Sources */,
 				7CE9C935298C04D200FCD7F8 /* Holder.swift in Sources */,
 				7CC0478D298D3DB60039B6D4 /* MvvmTableViewCell.swift in Sources */,
@@ -585,6 +592,7 @@
 				7C01A521298C5BD80071364D /* AnyObservableType.swift in Sources */,
 				7CE9C93E298C06E000FCD7F8 /* BindingContext.swift in Sources */,
 				7CE9C945298C0C0800FCD7F8 /* ViewModel+Router.swift in Sources */,
+				7C9420D5298E71870059CE14 /* ChartViewController.swift in Sources */,
 				7C9420CC298D65DC0059CE14 /* UIColor+Assets.swift in Sources */,
 				7C01A539298C893A0071364D /* StocksViewController.swift in Sources */,
 				7C01A510298C465F0071364D /* StocksViewModel.swift in Sources */,

@@ -21,7 +21,8 @@ struct FinanceMarketSummaryResultModel: Codable {
 struct MarketSummaryModel: Codable, Hashable {
     let exchangeTimezoneName, fullExchangeName: String?
     let symbol: String
-    let gmtOffSetMilliseconds, exchangeDataDelayedBy, firstTradeDateMilliseconds: Int?
+    let gmtOffSetMilliseconds: Int
+    let exchangeDataDelayedBy, firstTradeDateMilliseconds: Int?
     let language: Language?
     let regularMarketTime: RegularMarket?
     let exchangeTimezoneShortName, quoteType: String?
@@ -69,5 +70,6 @@ struct Spark: Codable, Hashable {
     let symbol: String?
     let timestamp: [Int]?
     let close: [Double?]?
-    let dataGranularity, end, start: Int?
+    let dataGranularity: Int?
+    let end, start: Int?
 }

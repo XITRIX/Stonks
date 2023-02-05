@@ -8,6 +8,8 @@
 import UIKit
 
 class StockDetailsViewController<VM: StockDetailsViewModelProtocol>: MvvmViewController<VM> {
+    @IBOutlet private var scrollView: UIScrollView!
+
     @IBOutlet private var symbolLabel: UILabel!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var currencyLabel: UILabel!
@@ -30,12 +32,20 @@ class StockDetailsViewController<VM: StockDetailsViewModelProtocol>: MvvmViewCon
     @IBOutlet private var summaryScrollView: UIScrollView!
     @IBOutlet private var chartsHolder: UIView!
     @IBOutlet private var chartLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet private var chardErrorContainer: UIStackView!
+
+    private let titleLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.largeTitleDisplayMode = .never
         setupCharts()
+
+        navigationItem.titleView = titleLabel
+        titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+
+        scrollView.delegate = delegates
 
         bind(in: disposeBag) {
             symbolLabel.rx.text <- viewModel.symbol
@@ -51,8 +61,8 @@ class StockDetailsViewController<VM: StockDetailsViewModelProtocol>: MvvmViewCon
             volumeLabel.rx.text <- viewModel.volume.map(dashIfEmpty)
             peLabel.rx.text <- viewModel.pe.map(dashIfEmpty)
             marketCapLabel.rx.text <- viewModel.marketCap.map(dashIfEmpty)
-            w25HLabel.rx.text <- viewModel.w25H.map(dashIfEmpty)
-            w25LLabel.rx.text <- viewModel.w25L.map(dashIfEmpty)
+            w25HLabel.rx.text <- viewModel.w52H.map(dashIfEmpty)
+            w25LLabel.rx.text <- viewModel.w52L.map(dashIfEmpty)
             averageVolumeLabel.rx.text <- viewModel.averageVolume.map(dashIfEmpty)
             yieldLabel.rx.text <- viewModel.yield.map(dashIfEmpty)
             betaLabel.rx.text <- viewModel.beta.map(dashIfEmpty)
@@ -60,20 +70,51 @@ class StockDetailsViewController<VM: StockDetailsViewModelProtocol>: MvvmViewCon
 
             charts.chart <- viewModel.chart
             chartLoadingIndicator.rx.isAnimating <- viewModel.chartIsLoading
+            chardErrorContainer.rx.isHidden <- viewModel.chartErrorOccured.map { !$0 }
+
+            viewModel.name.bind { [unowned self] text in
+                DispatchQueue.main.async {
+                    self.titleLabel.text = text
+                    self.titleLabel.sizeToFit()
+                }
+            }
         }
     }
 
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
+
         summaryScrollView.contentInset.left = view.layoutMargins.left - 10
         summaryScrollView.contentInset.right = view.layoutMargins.right - 10
+
+//        summaryScrollView.contentInset.left = view.readableContentGuide.layoutFrame.minX - 10
+//        summaryScrollView.contentInset.right = view.frame.width - view.readableContentGuide.layoutFrame.maxX - 10
     }
 
     // MARK: - Private
-    private let charts = StocksChartView()
+    private let charts = ChartViewController()
+    private lazy var delegates = Delegates(parent: self)
 }
 
 extension StockDetailsViewController {
+    class Delegates: DelegateObject<StockDetailsViewController>, UIScrollViewDelegate {
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            parent.updateTitleVisibility()
+        }
+    }
+}
+
+private extension StockDetailsViewController {
+    func updateTitleVisibility() {
+        let offset = scrollView.contentOffset.y + scrollView.safeAreaInsets.top
+        let hidden = nameLabel.frame.height + 16
+        let transactionLength: Double = 4
+
+        let alpha = min(max(0, offset - hidden) / transactionLength, 1)
+        titleLabel.alpha = alpha
+        titleLabel.isHidden = offset < hidden
+    }
+
     func dashIfEmpty(for text: String?) -> String {
         guard let text
         else { return "—" }

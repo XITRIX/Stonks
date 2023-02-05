@@ -94,14 +94,3 @@ private extension StocksViewModel {
         }
     }
 }
-
-extension MvvmViewModel {
-    func apiCall<T>(fun: () async throws -> T) async -> T? {
-        do {
-            return try await fun()
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-}
