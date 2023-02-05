@@ -78,9 +78,3 @@ func <- <L, R: ObservableType>(left: Binding<Optional<L>>, right: R) -> Disposab
         left.wrappedValue = value
     }
 }
-
-//extension ObservableType where Element == Bool {
-//    func invert() -> Bool {
-//        map { !$0 }
-//    }
-//}

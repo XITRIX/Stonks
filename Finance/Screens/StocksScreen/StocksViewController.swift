@@ -10,6 +10,7 @@ import RxSwift
 import UIKit
 
 class StocksViewController<VM: StocksViewModelProtocol>: MvvmTableViewController<VM> {
+
     // MARK: - Public
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +73,10 @@ private extension StocksViewController {
 
     private func makeDataSource() -> UITableViewDiffableDataSource<Int, StockCellModel> {
         UITableViewDiffableDataSource<Int, StockCellModel>(tableView: tableView) { tableView, indexPath, itemIdentifier in
+            let minScreenWidth: Double = 320
             let cell: StockCell = tableView.dequeue(for: indexPath)
             cell.setup(with: itemIdentifier)
-            cell.isCompact = tableView.safeAreaLayoutGuide.layoutFrame.width < 320
+            cell.isCompact = tableView.safeAreaLayoutGuide.layoutFrame.width < minScreenWidth
             return cell
         }
     }

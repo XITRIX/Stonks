@@ -8,7 +8,7 @@
 import UIKit
 
 public class Router {
-    private var storage = [String: (Any?) -> UIViewController]()
+    private var storage = [String: (Any?) -> any MvvmViewControllerProtocol]()
 }
 
 public extension Router {
@@ -31,24 +31,24 @@ public extension Router {
         }
     }
 
-    func safeResolve<VM: MvvmViewModelProtocol>(_ viewModel: VM.Type) -> UIViewController? {
+    func safeResolve<VM: MvvmViewModelProtocol>(_ viewModel: VM.Type) -> (any MvvmViewControllerProtocol)? {
         storage[String(describing: VM.self)]?(nil)
     }
 
-    func safeResolve<Model, VM: MvvmViewModelWithProtocol>(_ viewModel: VM.Type, with model: Model) -> UIViewController?
+    func safeResolve<Model, VM: MvvmViewModelWithProtocol>(_ viewModel: VM.Type, with model: Model) -> (any MvvmViewControllerProtocol)?
         where VM.Model == Model
     {
         storage[String(describing: VM.self)]?(model)
     }
 
-    func resolve<VM: MvvmViewModelProtocol>(_ viewModel: VM.Type) -> UIViewController {
+    func resolve<VM: MvvmViewModelProtocol>(_ viewModel: VM.Type) -> any MvvmViewControllerProtocol {
         guard let vc = safeResolve(viewModel)
         else { fatalError("Could not resolve \(VM.self). Register it first") }
 
         return vc
     }
 
-    func resolve<Model, VM: MvvmViewModelWithProtocol>(_ viewModel: VM.Type, with model: Model) -> UIViewController
+    func resolve<Model, VM: MvvmViewModelWithProtocol>(_ viewModel: VM.Type, with model: Model) -> any MvvmViewControllerProtocol
         where VM.Model == Model
     {
         guard let vc = safeResolve(viewModel, with: model)

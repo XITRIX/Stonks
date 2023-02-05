@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: MvvmSceneDelegate {
     override func register(in container: Container) {
-        container.register(type: FinanceApiProtocol.self, factory: FinanceApi.init)
+        container.registerSingleton(type: FinanceApiProtocol.self, factory: FinanceApi.init)
     }
 
     override func routing(in router: Router) {

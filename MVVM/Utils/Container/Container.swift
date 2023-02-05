@@ -19,7 +19,7 @@ public extension Container {
     }
 
     func register<T: Any>(factory: @escaping () -> T) {
-        map[String(describing: T.self)] = ResolverHolder(factory: factory)
+        register(type: T.self, factory: factory)
     }
 
     // MARK: - Singleton
@@ -28,21 +28,21 @@ public extension Container {
     }
 
     func registerSingleton<T: Any>(factory: @escaping () -> T) {
-        map[String(describing: T.self)] = SingletonHolder(factory: factory)
+        registerSingleton(type: T.self, factory: factory)
     }
 }
 
 // MARK: - Safe Resolve
 public extension Container {
     func safeResolve<T: Any>(type: T.Type) -> T? {
-        guard let obj = map[String(describing: type)]?.getter as? T
+        guard let obj = safeResolve(id: String(describing: type)) as T?
         else { return nil }
 
         return obj
     }
 
     func safeResolve<T: Any>() -> T? {
-        guard let obj = map[String(describing: T.self)]?.getter as? T
+        guard let obj = safeResolve(type: T.self)
         else { return nil }
 
         return obj
@@ -59,21 +59,15 @@ public extension Container {
 // MARK: - Resolve
 public extension Container {
     func resolve<T: Any>(type: T.Type) -> T {
-        guard let obj = safeResolve(type: type)
-        else { fatalError("\(T.self) is not registered") }
-
-        return obj
+        resolve(id: String(describing: type)) as T
     }
 
     func resolve<T: Any>() -> T {
-        guard let obj = safeResolve(type: T.self)
-        else { fatalError("\(T.self) is not registered") }
-
-        return obj
+        resolve(type: T.self)
     }
 
     func resolve<T: Any>(id: String) -> T {
-        guard let obj = map[id]?.getter as? T
+        guard let obj = safeResolve(id: id) as T?
         else { fatalError("\(T.self) is not registered") }
 
         return obj

@@ -13,6 +13,10 @@ public class MvvmTableViewCell: UITableViewCell {
 
     public override func prepareForReuse() {
         super.prepareForReuse()
+        resetBundings()
+    }
+
+    public func resetBundings() {
         disposeBag = DisposeBag()
     }
 }
