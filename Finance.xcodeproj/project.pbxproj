@@ -951,6 +951,7 @@
 				DEVELOPMENT_TEAM = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Finance/Core/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Stonks!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -980,6 +981,7 @@
 				DEVELOPMENT_TEAM = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Finance/Core/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Stonks!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
