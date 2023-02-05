@@ -34,8 +34,8 @@ class StocksViewModel: MvvmViewModel, StocksViewModelProtocol {
     required init() {
         super.init()
         title.accept("Stonks!")
-        // Disabled to not spend API calls. Enable it later
-        // timer = makeTimer()
+        // Disable to not spend API calls.
+        timer = makeTimer()
         Task {
             await refreshStocks()
             isLoading.accept(false)
