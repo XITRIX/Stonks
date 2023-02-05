@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension MvvmViewModel {
+extension MvvmViewModelProtocol {
     func apiCall<T>(fun: () async throws -> T) async -> T? {
         do {
             return try await fun()

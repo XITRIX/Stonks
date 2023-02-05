@@ -84,7 +84,7 @@ extension StockDetailsViewModel {
         }
     }
 
-    func applyDetails(_ details: StockSummaryModel) {
+    func applyDetails(_ details: ApiStockSummaryModel) {
         symbol.accept(details.symbol)
         name.accept(details.quoteType?.longName ?? details.quoteType?.shortName)
         currency.accept("\(details.quoteType?.exchange ?? "")・\(details.summaryDetail.currency)")
@@ -105,7 +105,7 @@ extension StockDetailsViewModel {
         eps.accept(details.defaultKeyStatistics?.trailingEps?.raw?.currency)
     }
 
-    func applyChart(_ chart: ChartModel) {
+    func applyChart(_ chart: ApiChartModel) {
         guard let quite = chart.indicators.quote.first
         else { return }
 

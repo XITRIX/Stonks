@@ -7,44 +7,44 @@
 
 import Foundation
 
-struct FinanceMarketSummaryResponseModel: Codable {
-    let marketSummaryAndSparkResponse: FinanceMarketSummaryResultModel?
+struct ApiFinanceMarketSummaryResponseModel: Codable {
+    let marketSummaryAndSparkResponse: ApiFinanceMarketSummaryResultModel?
 }
 
 // MARK: - FinanceSummaryResponseModel
-struct FinanceMarketSummaryResultModel: Codable {
-    let result: [MarketSummaryModel]?
+struct ApiFinanceMarketSummaryResultModel: Codable {
+    let result: [ApiMarketSummaryModel]?
 }
 
 
 // MARK: - FinanceMarketSummaryModel
-struct MarketSummaryModel: Codable, Hashable {
+struct ApiMarketSummaryModel: Codable, Hashable {
     let exchangeTimezoneName, fullExchangeName: String?
     let symbol: String
     let gmtOffSetMilliseconds: Int
     let exchangeDataDelayedBy, firstTradeDateMilliseconds: Int?
-    let language: Language?
-    let regularMarketTime: RegularMarket?
+    let language: ApiLanguage?
+    let regularMarketTime: ApiRegularMarket?
     let exchangeTimezoneShortName, quoteType: String?
-    let marketState: MarketState?
+    let marketState: ApiMarketState?
     let market: String?
-    let spark: Spark
+    let spark: ApiSpark
     let priceHint: Int?
     let tradeable: Bool?
     let sourceInterval: Int?
     let exchange, shortName: String?
-    let region: Region?
+    let region: ApiRegion?
     let triggerable: Bool?
-    let regularMarketPreviousClose: RegularMarket
+    let regularMarketPreviousClose: ApiRegularMarket
 }
 
 // MARK: - Language
-enum Language: String, Codable, Hashable {
+enum ApiLanguage: String, Codable, Hashable {
     case enUS = "en-US"
 }
 
 // MARK: - MarketState
-enum MarketState: String, Codable, Hashable {
+enum ApiMarketState: String, Codable, Hashable {
     case pre = "PRE"
     case prepre = "PREPRE"
     case post = "POST"
@@ -54,18 +54,18 @@ enum MarketState: String, Codable, Hashable {
 }
 
 // MARK: - Region
-enum Region: String, Codable, Hashable {
+enum ApiRegion: String, Codable, Hashable {
     case us = "US"
 }
 
 // MARK: - RegularMarket
-struct RegularMarket: Codable, Hashable {
+struct ApiRegularMarket: Codable, Hashable {
     let raw: Double
     let fmt: String
 }
 
 // MARK: - Spark
-struct Spark: Codable, Hashable {
+struct ApiSpark: Codable, Hashable {
     let previousClose, chartPreviousClose: Double?
     let symbol: String?
     let timestamp: [Int]?

@@ -17,7 +17,7 @@ class StockCellModel: Hashable {
     let isPositive = BehaviorRelay<Bool?>(value: nil)
     let chart = BehaviorRelay<ChartData>(value: ChartData(segments: []))
 
-    init(from stock: MarketSummaryModel) {
+    init(from stock: ApiMarketSummaryModel) {
         let value: Double
         if let last = stock.spark.close?.compactMap({$0}).last {
             value = last

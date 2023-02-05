@@ -12,8 +12,8 @@
 import Foundation
 
 // MARK: - ChartModelResponse
-struct ChartModelResponse: Codable, Hashable {
-    let chart: ChartModelChart
+struct ApiChartModelResponse: Codable, Hashable {
+    let chart: ApiChartModelChart
 }
 
 //
@@ -23,8 +23,8 @@ struct ChartModelResponse: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModelChart
-struct ChartModelChart: Codable, Hashable {
-    let result: [ChartModel]
+struct ApiChartModelChart: Codable, Hashable {
+    let result: [ApiChartModel]
 }
 
 //
@@ -34,10 +34,10 @@ struct ChartModelChart: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModel
-struct ChartModel: Codable, Hashable {
-    let meta: ChartModelMeta
+struct ApiChartModel: Codable, Hashable {
+    let meta: ApiChartModelMeta
     let timestamp: [Int]?
-    let indicators: ChartModelIndicators
+    let indicators: ApiChartModelIndicators
 }
 
 //
@@ -47,9 +47,9 @@ struct ChartModel: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModelIndicators
-struct ChartModelIndicators: Codable, Hashable {
-    let quote: [ChartModelQuote]
-    let adjclose: [ChartModelAdjclose]?
+struct ApiChartModelIndicators: Codable, Hashable {
+    let quote: [ApiChartModelQuote]
+    let adjclose: [ApiChartModelAdjclose]?
 }
 
 //
@@ -59,7 +59,7 @@ struct ChartModelIndicators: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModelAdjclose
-struct ChartModelAdjclose: Codable, Hashable {
+struct ApiChartModelAdjclose: Codable, Hashable {
     let adjclose: [Double]?
 }
 
@@ -70,7 +70,7 @@ struct ChartModelAdjclose: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModelQuote
-struct ChartModelQuote: Codable, Hashable {
+struct ApiChartModelQuote: Codable, Hashable {
     let volume: [Int?]?
     let quoteOpen, close, low, high: [Double?]?
 
@@ -88,13 +88,13 @@ struct ChartModelQuote: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModelMeta
-struct ChartModelMeta: Codable, Hashable {
+struct ApiChartModelMeta: Codable, Hashable {
     let currency, symbol, exchangeName, instrumentType: String?
     let firstTradeDate, regularMarketTime, gmtoffset: Int?
     let timezone, exchangeTimezoneName: String?
     let regularMarketPrice, chartPreviousClose: Double?
     let priceHint: Int?
-    let currentTradingPeriod: ChartModelCurrentTradingPeriod?
+    let currentTradingPeriod: ApiChartModelCurrentTradingPeriod?
     let dataGranularity, range: String?
     let validRanges: [String]?
 }
@@ -106,8 +106,8 @@ struct ChartModelMeta: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModelCurrentTradingPeriod
-struct ChartModelCurrentTradingPeriod: Codable, Hashable {
-    let pre, regular, post: ChartModelPost
+struct ApiChartModelCurrentTradingPeriod: Codable, Hashable {
+    let pre, regular, post: ApiChartModelPost
 }
 
 //
@@ -117,7 +117,7 @@ struct ChartModelCurrentTradingPeriod: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - ChartModelPost
-struct ChartModelPost: Codable, Hashable {
+struct ApiChartModelPost: Codable, Hashable {
     let timezone: String
     let end, start, gmtoffset: Int
 }

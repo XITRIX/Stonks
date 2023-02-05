@@ -7,12 +7,7 @@
 
 import Foundation
 
-struct ApiError: Error {
-    let message: String
-    var localizedDescription: String { message }
-}
-
-enum ChartInterval: String {
+enum ApiChartInterval: String {
     case minute = "1m"
     case twoMinutes = "2m"
     case fiveMinutes = "5m"
@@ -24,23 +19,23 @@ enum ChartInterval: String {
     case month = "1mo"
 }
 
-enum ChartRange: String {
+enum ApiChartRange: String {
     case day = "1d"
     case fiveDays = "5d"
     case month = "1m"
 }
 
 protocol FinanceApiProtocol {
-    func getStocks() async throws -> [MarketSummaryModel]
-    func getStockDetails(_ symbol: String) async throws -> StockSummaryModel
-    func getStockChart(_ symbol: String, interval: ChartInterval, range: ChartRange) async throws -> ChartModel
+    func getStocks() async throws -> [ApiMarketSummaryModel]
+    func getStockDetails(_ symbol: String) async throws -> ApiStockSummaryModel
+    func getStockChart(_ symbol: String, interval: ApiChartInterval, range: ApiChartRange) async throws -> ApiChartModel
 }
 
 class FinanceApi: FinanceApiProtocol {
     private static let host = "yh-finance.p.rapidapi.com"
     private static let apiKey = "ed039224e4mshf93dece37b683d7p144c69jsne0fa17366d3e"
 
-    func getStocks() async throws -> [MarketSummaryModel] {
+    func getStocks() async throws -> [ApiMarketSummaryModel] {
         var components = urlBaseComponents
         components.path = "/market/v2/get-summary"
         components.queryItems = [
@@ -50,11 +45,11 @@ class FinanceApi: FinanceApiProtocol {
         guard let endpoint = components.url
         else { throw ApiError(message: "Incorrect URL") }
 
-        let response = try await baseRequest(from: endpoint) as FinanceMarketSummaryResponseModel
+        let response = try await baseRequest(from: endpoint) as ApiFinanceMarketSummaryResponseModel
         return response.marketSummaryAndSparkResponse?.result ?? []
     }
 
-    func getStockDetails(_ symbol: String) async throws -> StockSummaryModel {
+    func getStockDetails(_ symbol: String) async throws -> ApiStockSummaryModel {
         var components = urlBaseComponents
         components.path = "/stock/v2/get-summary"
         components.queryItems = [
@@ -65,10 +60,10 @@ class FinanceApi: FinanceApiProtocol {
         guard let endpoint = components.url
         else { throw ApiError(message: "Incorrect URL") }
 
-        return try await baseRequest(from: endpoint) as StockSummaryModel
+        return try await baseRequest(from: endpoint) as ApiStockSummaryModel
     }
 
-    func getStockChart(_ symbol: String, interval: ChartInterval, range: ChartRange) async throws -> ChartModel {
+    func getStockChart(_ symbol: String, interval: ApiChartInterval, range: ApiChartRange) async throws -> ApiChartModel {
         var components = urlBaseComponents
         components.path = "/stock/v3/get-chart"
         components.queryItems = [
@@ -81,7 +76,7 @@ class FinanceApi: FinanceApiProtocol {
         guard let endpoint = components.url
         else { throw ApiError(message: "Incorrect URL") }
 
-        let response = try await baseRequest(from: endpoint) as ChartModelResponse
+        let response = try await baseRequest(from: endpoint) as ApiChartModelResponse
         guard let result = response.chart.result.first
         else { throw ApiError(message: "Error while parsing ChartModel") }
 

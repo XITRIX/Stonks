@@ -12,29 +12,29 @@
 import Foundation
 
 // MARK: - StockSummaryModelWelcome
-struct StockSummaryModel: Codable, Hashable {
-    let defaultKeyStatistics: StockSummaryModelDefaultKeyStatistics?
-    let details: StockSummaryModelDetails?
-    let summaryProfile: StockSummaryModelSummaryProfile?
-    let recommendationTrend: StockSummaryModelRecommendationTrend?
-    let financialsTemplate: StockSummaryModelFinancialsTemplate?
-    let majorDirectHolders: StockSummaryModelHolders?
-    let earnings: StockSummaryModelWelcomeEarnings?
-    let price: StockSummaryModelPrice?
-    let fundOwnership: StockSummaryModelOwnership?
-    let insiderTransactions: StockSummaryModelInsiderTransactions?
-    let insiderHolders: StockSummaryModelHolders?
-    let netSharePurchaseActivity: StockSummaryModelNetSharePurchaseActivity?
-    let majorHoldersBreakdown: StockSummaryModelMajorHoldersBreakdown?
-    let financialData: StockSummaryModelFinancialData?
-    let quoteType: StockSummaryModelQuoteType?
-    let institutionOwnership: StockSummaryModelOwnership?
-    let calendarEvents: StockSummaryModelCalendarEvents?
-    let summaryDetail: StockSummaryModelSummaryDetail
+struct ApiStockSummaryModel: Codable, Hashable {
+    let defaultKeyStatistics: ApiStockSummaryModelDefaultKeyStatistics?
+    let details: ApiStockSummaryModelDetails?
+    let summaryProfile: ApiStockSummaryModelSummaryProfile?
+    let recommendationTrend: ApiStockSummaryModelRecommendationTrend?
+    let financialsTemplate: ApiStockSummaryModelFinancialsTemplate?
+    let majorDirectHolders: ApiStockSummaryModelHolders?
+    let earnings: ApiStockSummaryModelWelcomeEarnings?
+    let price: ApiStockSummaryModelPrice?
+    let fundOwnership: ApiStockSummaryModelOwnership?
+    let insiderTransactions: ApiStockSummaryModelInsiderTransactions?
+    let insiderHolders: ApiStockSummaryModelHolders?
+    let netSharePurchaseActivity: ApiStockSummaryModelNetSharePurchaseActivity?
+    let majorHoldersBreakdown: ApiStockSummaryModelMajorHoldersBreakdown?
+    let financialData: ApiStockSummaryModelFinancialData?
+    let quoteType: ApiStockSummaryModelQuoteType?
+    let institutionOwnership: ApiStockSummaryModelOwnership?
+    let calendarEvents: ApiStockSummaryModelCalendarEvents?
+    let summaryDetail: ApiStockSummaryModelSummaryDetail
     let symbol: String?
-    let esgScores: StockSummaryModelEsgScores?
-    let upgradeDowngradeHistory: StockSummaryModelUpgradeDowngradeHistory?
-    let pageViews: StockSummaryModelPageViews?
+    let esgScores: ApiStockSummaryModelEsgScores?
+    let upgradeDowngradeHistory: ApiStockSummaryModelUpgradeDowngradeHistory?
+    let pageViews: ApiStockSummaryModelPageViews?
 }
 
 //
@@ -44,10 +44,10 @@ struct StockSummaryModel: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelCalendarEvents
-struct StockSummaryModelCalendarEvents: Codable, Hashable {
+struct ApiStockSummaryModelCalendarEvents: Codable, Hashable {
     let maxAge: Int?
-    let earnings: StockSummaryModelCalendarEventsEarnings?
-    let exDividendDate, dividendDate: StockSummaryModelDividendDate?
+    let earnings: ApiStockSummaryModelCalendarEventsEarnings?
+    let exDividendDate, dividendDate: ApiStockSummaryModelDividendDate?
 }
 
 //
@@ -57,7 +57,7 @@ struct StockSummaryModelCalendarEvents: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelDividendDate
-struct StockSummaryModelDividendDate: Codable, Hashable {
+struct ApiStockSummaryModelDividendDate: Codable, Hashable {
     let raw: Double?
     let fmt: String?
 }
@@ -69,10 +69,10 @@ struct StockSummaryModelDividendDate: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelCalendarEventsEarnings
-struct StockSummaryModelCalendarEventsEarnings: Codable, Hashable {
-    let earningsDate: [StockSummaryModelDividendDate]?
-    let earningsAverage, earningsLow, earningsHigh: StockSummaryModelDividendDate?
-    let revenueAverage, revenueLow, revenueHigh: StockSummaryModelEnterpriseValue?
+struct ApiStockSummaryModelCalendarEventsEarnings: Codable, Hashable {
+    let earningsDate: [ApiStockSummaryModelDividendDate]?
+    let earningsAverage, earningsLow, earningsHigh: ApiStockSummaryModelDividendDate?
+    let revenueAverage, revenueLow, revenueHigh: ApiStockSummaryModelEnterpriseValue?
 }
 
 //
@@ -82,7 +82,7 @@ struct StockSummaryModelCalendarEventsEarnings: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelEnterpriseValue
-struct StockSummaryModelEnterpriseValue: Codable, Hashable {
+struct ApiStockSummaryModelEnterpriseValue: Codable, Hashable {
     let raw: Int?
     let fmt: String?
     let longFmt: String?
@@ -95,46 +95,46 @@ struct StockSummaryModelEnterpriseValue: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelDefaultKeyStatistics
-struct StockSummaryModelDefaultKeyStatistics: Codable, Hashable {
-    let annualHoldingsTurnover: StockSummaryModelDetails?
-    let enterpriseToRevenue: StockSummaryModelDividendDate?
-    let beta3Year: StockSummaryModelDetails?
-    let profitMargins, enterpriseToEbitda, the52WeekChange: StockSummaryModelDividendDate?
-    let morningStarRiskRating: StockSummaryModelDetails?
-    let forwardEps: StockSummaryModelDividendDate?
-    let revenueQuarterlyGrowth: StockSummaryModelDetails?
-    let sharesOutstanding: StockSummaryModelEnterpriseValue?
-    let fundInceptionDate, annualReportExpenseRatio, totalAssets: StockSummaryModelDetails?
-    let bookValue: StockSummaryModelDividendDate?
-    let sharesShort: StockSummaryModelEnterpriseValue?
-    let sharesPercentSharesOut: StockSummaryModelDividendDate?
+struct ApiStockSummaryModelDefaultKeyStatistics: Codable, Hashable {
+    let annualHoldingsTurnover: ApiStockSummaryModelDetails?
+    let enterpriseToRevenue: ApiStockSummaryModelDividendDate?
+    let beta3Year: ApiStockSummaryModelDetails?
+    let profitMargins, enterpriseToEbitda, the52WeekChange: ApiStockSummaryModelDividendDate?
+    let morningStarRiskRating: ApiStockSummaryModelDetails?
+    let forwardEps: ApiStockSummaryModelDividendDate?
+    let revenueQuarterlyGrowth: ApiStockSummaryModelDetails?
+    let sharesOutstanding: ApiStockSummaryModelEnterpriseValue?
+    let fundInceptionDate, annualReportExpenseRatio, totalAssets: ApiStockSummaryModelDetails?
+    let bookValue: ApiStockSummaryModelDividendDate?
+    let sharesShort: ApiStockSummaryModelEnterpriseValue?
+    let sharesPercentSharesOut: ApiStockSummaryModelDividendDate?
 //    let fundFamily: JSONNull?
-    let lastFiscalYearEnd, heldPercentInstitutions: StockSummaryModelDividendDate?
-    let netIncomeToCommon: StockSummaryModelEnterpriseValue?
-    let trailingEps, lastDividendValue, sandP52WeekChange, priceToBook: StockSummaryModelDividendDate?
-    let heldPercentInsiders, nextFiscalYearEnd: StockSummaryModelDividendDate?
-    let yield: StockSummaryModelDetails?
-    let mostRecentQuarter, shortRatio, sharesShortPreviousMonthDate: StockSummaryModelDividendDate?
-    let floatShares: StockSummaryModelEnterpriseValue?
-    let beta: StockSummaryModelDividendDate?
-    let enterpriseValue, priceHint: StockSummaryModelEnterpriseValue?
-    let threeYearAverageReturn: StockSummaryModelDetails?
-    let lastSplitDate: StockSummaryModelDividendDate?
+    let lastFiscalYearEnd, heldPercentInstitutions: ApiStockSummaryModelDividendDate?
+    let netIncomeToCommon: ApiStockSummaryModelEnterpriseValue?
+    let trailingEps, lastDividendValue, sandP52WeekChange, priceToBook: ApiStockSummaryModelDividendDate?
+    let heldPercentInsiders, nextFiscalYearEnd: ApiStockSummaryModelDividendDate?
+    let yield: ApiStockSummaryModelDetails?
+    let mostRecentQuarter, shortRatio, sharesShortPreviousMonthDate: ApiStockSummaryModelDividendDate?
+    let floatShares: ApiStockSummaryModelEnterpriseValue?
+    let beta: ApiStockSummaryModelDividendDate?
+    let enterpriseValue, priceHint: ApiStockSummaryModelEnterpriseValue?
+    let threeYearAverageReturn: ApiStockSummaryModelDetails?
+    let lastSplitDate: ApiStockSummaryModelDividendDate?
     let lastSplitFactor: String?
 //    let legalType: JSONNull?
-    let lastDividendDate: StockSummaryModelDividendDate?
-    let morningStarOverallRating: StockSummaryModelDetails?
-    let earningsQuarterlyGrowth: StockSummaryModelDividendDate?
-    let priceToSalesTrailing12Months: StockSummaryModelDetails?
-    let dateShortInterest, pegRatio: StockSummaryModelDividendDate?
-    let ytdReturn: StockSummaryModelDetails?
-    let forwardPE: StockSummaryModelDividendDate?
+    let lastDividendDate: ApiStockSummaryModelDividendDate?
+    let morningStarOverallRating: ApiStockSummaryModelDetails?
+    let earningsQuarterlyGrowth: ApiStockSummaryModelDividendDate?
+    let priceToSalesTrailing12Months: ApiStockSummaryModelDetails?
+    let dateShortInterest, pegRatio: ApiStockSummaryModelDividendDate?
+    let ytdReturn: ApiStockSummaryModelDetails?
+    let forwardPE: ApiStockSummaryModelDividendDate?
     let maxAge: Int?
-    let lastCapGain: StockSummaryModelDetails?
-    let shortPercentOfFloat: StockSummaryModelDividendDate?
-    let sharesShortPriorMonth, impliedSharesOutstanding: StockSummaryModelEnterpriseValue?
+    let lastCapGain: ApiStockSummaryModelDetails?
+    let shortPercentOfFloat: ApiStockSummaryModelDividendDate?
+    let sharesShortPriorMonth, impliedSharesOutstanding: ApiStockSummaryModelEnterpriseValue?
 //    let category: JSONNull?
-    let fiveYearAverageReturn: StockSummaryModelDetails?
+    let fiveYearAverageReturn: ApiStockSummaryModelDetails?
 
     enum CodingKeys: String, CodingKey {
         case annualHoldingsTurnover, enterpriseToRevenue, beta3Year, profitMargins, enterpriseToEbitda
@@ -152,7 +152,7 @@ struct StockSummaryModelDefaultKeyStatistics: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelDetails
-struct StockSummaryModelDetails: Codable, Hashable {
+struct ApiStockSummaryModelDetails: Codable, Hashable {
 }
 
 //
@@ -162,10 +162,10 @@ struct StockSummaryModelDetails: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelWelcomeEarnings
-struct StockSummaryModelWelcomeEarnings: Codable, Hashable {
+struct ApiStockSummaryModelWelcomeEarnings: Codable, Hashable {
     let maxAge: Int?
-    let earningsChart: StockSummaryModelEarningsChart?
-    let financialsChart: StockSummaryModelFinancialsChart?
+    let earningsChart: ApiStockSummaryModelEarningsChart?
+    let financialsChart: ApiStockSummaryModelFinancialsChart?
     let financialCurrency: String?
 }
 
@@ -176,12 +176,12 @@ struct StockSummaryModelWelcomeEarnings: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelEarningsChart
-struct StockSummaryModelEarningsChart: Codable, Hashable {
-    let quarterly: [StockSummaryModelEarningsChartQuarterly]?
-    let currentQuarterEstimate: StockSummaryModelDividendDate?
+struct ApiStockSummaryModelEarningsChart: Codable, Hashable {
+    let quarterly: [ApiStockSummaryModelEarningsChartQuarterly]?
+    let currentQuarterEstimate: ApiStockSummaryModelDividendDate?
     let currentQuarterEstimateDate: String?
     let currentQuarterEstimateYear: Int?
-    let earningsDate: [StockSummaryModelDividendDate]?
+    let earningsDate: [ApiStockSummaryModelDividendDate]?
 }
 
 //
@@ -191,9 +191,9 @@ struct StockSummaryModelEarningsChart: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelEarningsChartQuarterly
-struct StockSummaryModelEarningsChartQuarterly: Codable, Hashable {
+struct ApiStockSummaryModelEarningsChartQuarterly: Codable, Hashable {
     let date: String?
-    let actual, estimate: StockSummaryModelDividendDate?
+    let actual, estimate: ApiStockSummaryModelDividendDate?
 }
 
 //
@@ -203,9 +203,9 @@ struct StockSummaryModelEarningsChartQuarterly: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelFinancialsChart
-struct StockSummaryModelFinancialsChart: Codable, Hashable {
-    let yearly: [StockSummaryModelYearly]?
-    let quarterly: [StockSummaryModelFinancialsChartQuarterly]?
+struct ApiStockSummaryModelFinancialsChart: Codable, Hashable {
+    let yearly: [ApiStockSummaryModelYearly]?
+    let quarterly: [ApiStockSummaryModelFinancialsChartQuarterly]?
 }
 
 //
@@ -215,9 +215,9 @@ struct StockSummaryModelFinancialsChart: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelFinancialsChartQuarterly
-struct StockSummaryModelFinancialsChartQuarterly: Codable, Hashable {
+struct ApiStockSummaryModelFinancialsChartQuarterly: Codable, Hashable {
     let date: String?
-    let revenue, earnings: StockSummaryModelEnterpriseValue?
+    let revenue, earnings: ApiStockSummaryModelEnterpriseValue?
 }
 
 //
@@ -227,9 +227,9 @@ struct StockSummaryModelFinancialsChartQuarterly: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelYearly
-struct StockSummaryModelYearly: Codable, Hashable {
+struct ApiStockSummaryModelYearly: Codable, Hashable {
     let date: Int?
-    let revenue, earnings: StockSummaryModelEnterpriseValue?
+    let revenue, earnings: ApiStockSummaryModelEnterpriseValue?
 }
 
 //
@@ -239,36 +239,36 @@ struct StockSummaryModelYearly: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelEsgScores
-struct StockSummaryModelEsgScores: Codable, Hashable {
+struct ApiStockSummaryModelEsgScores: Codable, Hashable {
     let palmOil: Bool?
-    let peerSocialPerformance: StockSummaryModelPeerPerformance?
+    let peerSocialPerformance: ApiStockSummaryModelPeerPerformance?
     let controversialWeapons: Bool?
     let ratingMonth: Int?
     let gambling: Bool?
-    let socialScore: StockSummaryModelDividendDate?
+    let socialScore: ApiStockSummaryModelDividendDate?
     let nuclear, furLeather, alcoholic, gmo: Bool?
     let catholic: Bool?
 //    let socialPercentile: JSONNull?
-    let peerGovernancePerformance: StockSummaryModelPeerPerformance?
+    let peerGovernancePerformance: ApiStockSummaryModelPeerPerformance?
     let peerCount: Int?
     let relatedControversy: [String]?
-    let governanceScore: StockSummaryModelDividendDate?
+    let governanceScore: ApiStockSummaryModelDividendDate?
 //    let environmentPercentile: JSONNull?
     let animalTesting: Bool?
-    let peerEsgScorePerformance: StockSummaryModelPeerPerformance?
+    let peerEsgScorePerformance: ApiStockSummaryModelPeerPerformance?
     let tobacco: Bool?
-    let totalEsg: StockSummaryModelDividendDate?
+    let totalEsg: ApiStockSummaryModelDividendDate?
     let highestControversy: Int?
     let esgPerformance: String?
     let coal: Bool?
-    let peerHighestControversyPerformance: StockSummaryModelPeerPerformance?
+    let peerHighestControversyPerformance: ApiStockSummaryModelPeerPerformance?
     let pesticides, adult: Bool?
     let ratingYear, maxAge: Int?
-    let percentile: StockSummaryModelDividendDate?
+    let percentile: ApiStockSummaryModelDividendDate?
     let peerGroup: String?
     let smallArms: Bool?
-    let peerEnvironmentPerformance: StockSummaryModelPeerPerformance?
-    let environmentScore: StockSummaryModelDividendDate?
+    let peerEnvironmentPerformance: ApiStockSummaryModelPeerPerformance?
+    let environmentScore: ApiStockSummaryModelDividendDate?
 //    let governancePercentile: JSONNull?
     let militaryContract: Bool?
 }
@@ -280,7 +280,7 @@ struct StockSummaryModelEsgScores: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelPeerPerformance
-struct StockSummaryModelPeerPerformance: Codable, Hashable {
+struct ApiStockSummaryModelPeerPerformance: Codable, Hashable {
     let min, avg, max: Double?
 }
 
@@ -291,23 +291,23 @@ struct StockSummaryModelPeerPerformance: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelFinancialData
-struct StockSummaryModelFinancialData: Codable, Hashable {
-    let ebitdaMargins, profitMargins, grossMargins: StockSummaryModelDividendDate?
-    let operatingCashflow: StockSummaryModelEnterpriseValue?
-    let revenueGrowth, operatingMargins: StockSummaryModelDividendDate?
-    let ebitda: StockSummaryModelEnterpriseValue?
-    let targetLowPrice: StockSummaryModelDividendDate?
+struct ApiStockSummaryModelFinancialData: Codable, Hashable {
+    let ebitdaMargins, profitMargins, grossMargins: ApiStockSummaryModelDividendDate?
+    let operatingCashflow: ApiStockSummaryModelEnterpriseValue?
+    let revenueGrowth, operatingMargins: ApiStockSummaryModelDividendDate?
+    let ebitda: ApiStockSummaryModelEnterpriseValue?
+    let targetLowPrice: ApiStockSummaryModelDividendDate?
     let recommendationKey: String?
-    let grossProfits, freeCashflow: StockSummaryModelEnterpriseValue?
-    let targetMedianPrice, currentPrice, earningsGrowth, currentRatio: StockSummaryModelDividendDate?
-    let returnOnAssets: StockSummaryModelDividendDate?
-    let numberOfAnalystOpinions: StockSummaryModelEnterpriseValue?
-    let targetMeanPrice, debtToEquity, returnOnEquity, targetHighPrice: StockSummaryModelDividendDate?
-    let totalCash, totalDebt, totalRevenue: StockSummaryModelEnterpriseValue?
-    let totalCashPerShare: StockSummaryModelDividendDate?
+    let grossProfits, freeCashflow: ApiStockSummaryModelEnterpriseValue?
+    let targetMedianPrice, currentPrice, earningsGrowth, currentRatio: ApiStockSummaryModelDividendDate?
+    let returnOnAssets: ApiStockSummaryModelDividendDate?
+    let numberOfAnalystOpinions: ApiStockSummaryModelEnterpriseValue?
+    let targetMeanPrice, debtToEquity, returnOnEquity, targetHighPrice: ApiStockSummaryModelDividendDate?
+    let totalCash, totalDebt, totalRevenue: ApiStockSummaryModelEnterpriseValue?
+    let totalCashPerShare: ApiStockSummaryModelDividendDate?
     let financialCurrency: String?
     let maxAge: Int?
-    let revenuePerShare, quickRatio, recommendationMean: StockSummaryModelDividendDate?
+    let revenuePerShare, quickRatio, recommendationMean: ApiStockSummaryModelDividendDate?
 }
 
 //
@@ -317,7 +317,7 @@ struct StockSummaryModelFinancialData: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelFinancialsTemplate
-struct StockSummaryModelFinancialsTemplate: Codable, Hashable {
+struct ApiStockSummaryModelFinancialsTemplate: Codable, Hashable {
     let code: String?
     let maxAge: Int?
 }
@@ -329,9 +329,9 @@ struct StockSummaryModelFinancialsTemplate: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelOwnership
-struct StockSummaryModelOwnership: Codable, Hashable {
+struct ApiStockSummaryModelOwnership: Codable, Hashable {
     let maxAge: Int?
-    let ownershipList: [StockSummaryModelOwnershipList]?
+    let ownershipList: [ApiStockSummaryModelOwnershipList]?
 }
 
 //
@@ -341,13 +341,13 @@ struct StockSummaryModelOwnership: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelOwnershipList
-struct StockSummaryModelOwnershipList: Codable, Hashable {
+struct ApiStockSummaryModelOwnershipList: Codable, Hashable {
     let maxAge: Int?
-    let reportDate: StockSummaryModelDividendDate?
+    let reportDate: ApiStockSummaryModelDividendDate?
     let organization: String?
-    let pctHeld: StockSummaryModelDividendDate?
-    let position, value: StockSummaryModelEnterpriseValue?
-    let pctChange: StockSummaryModelDividendDate?
+    let pctHeld: ApiStockSummaryModelDividendDate?
+    let position, value: ApiStockSummaryModelEnterpriseValue?
+    let pctChange: ApiStockSummaryModelDividendDate?
 }
 
 //
@@ -357,8 +357,8 @@ struct StockSummaryModelOwnershipList: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelHolders
-struct StockSummaryModelHolders: Codable, Hashable {
-    let holders: [StockSummaryModelHolder]?
+struct ApiStockSummaryModelHolders: Codable, Hashable {
+    let holders: [ApiStockSummaryModelHolder]?
     let maxAge: Int?
 }
 
@@ -369,20 +369,20 @@ struct StockSummaryModelHolders: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelHolder
-struct StockSummaryModelHolder: Codable, Hashable {
+struct ApiStockSummaryModelHolder: Codable, Hashable {
     let maxAge: Int?
     let name: String?
-    let relation: StockSummaryModelRelation?
+    let relation: ApiStockSummaryModelRelation?
     let url: String?
-    let transactionDescription: StockSummaryModelTransactionDescription?
-    let latestTransDate: StockSummaryModelDividendDate?
-    let positionDirect: StockSummaryModelEnterpriseValue?
-    let positionDirectDate: StockSummaryModelDividendDate?
-    let positionIndirect: StockSummaryModelEnterpriseValue?
-    let positionIndirectDate: StockSummaryModelDividendDate?
+    let transactionDescription: ApiStockSummaryModelTransactionDescription?
+    let latestTransDate: ApiStockSummaryModelDividendDate?
+    let positionDirect: ApiStockSummaryModelEnterpriseValue?
+    let positionDirectDate: ApiStockSummaryModelDividendDate?
+    let positionIndirect: ApiStockSummaryModelEnterpriseValue?
+    let positionIndirectDate: ApiStockSummaryModelDividendDate?
 }
 
-enum StockSummaryModelRelation: String, Codable, Hashable {
+enum ApiStockSummaryModelRelation: String, Codable, Hashable {
     case chiefExecutiveOfficer = "Chief Executive Officer"
     case chiefFinancialOfficer = "Chief Financial Officer"
     case chiefOperatingOfficer = "Chief Operating Officer"
@@ -391,7 +391,7 @@ enum StockSummaryModelRelation: String, Codable, Hashable {
     case officer = "Officer"
 }
 
-enum StockSummaryModelTransactionDescription: String, Codable, Hashable {
+enum ApiStockSummaryModelTransactionDescription: String, Codable, Hashable {
     case conversionOfExerciseOfDerivativeSecurity = "Conversion of Exercise of derivative security"
     case sale = "Sale"
     case stockGift = "Stock Gift"
@@ -404,8 +404,8 @@ enum StockSummaryModelTransactionDescription: String, Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelInsiderTransactions
-struct StockSummaryModelInsiderTransactions: Codable, Hashable {
-    let transactions: [StockSummaryModelTransaction]?
+struct ApiStockSummaryModelInsiderTransactions: Codable, Hashable {
+    let transactions: [ApiStockSummaryModelTransaction]?
     let maxAge: Int?
 }
 
@@ -416,13 +416,13 @@ struct StockSummaryModelInsiderTransactions: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelTransaction
-struct StockSummaryModelTransaction: Codable, Hashable {
+struct ApiStockSummaryModelTransaction: Codable, Hashable {
     let filerName, transactionText, moneyText: String?
-    let ownership: StockSummaryModelOwnershipEnum?
-    let startDate: StockSummaryModelDividendDate?
-    let value: StockSummaryModelEnterpriseValue?
-    let filerRelation: StockSummaryModelRelation?
-    let shares: StockSummaryModelEnterpriseValue?
+    let ownership: ApiStockSummaryModelOwnershipEnum?
+    let startDate: ApiStockSummaryModelDividendDate?
+    let value: ApiStockSummaryModelEnterpriseValue?
+    let filerRelation: ApiStockSummaryModelRelation?
+    let shares: ApiStockSummaryModelEnterpriseValue?
     let filerURL: String?
     let maxAge: Int?
 
@@ -433,7 +433,7 @@ struct StockSummaryModelTransaction: Codable, Hashable {
     }
 }
 
-enum StockSummaryModelOwnershipEnum: String, Codable, Hashable {
+enum ApiStockSummaryModelOwnershipEnum: String, Codable, Hashable {
     case d = "D"
     case i = "I"
 }
@@ -445,10 +445,10 @@ enum StockSummaryModelOwnershipEnum: String, Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelMajorHoldersBreakdown
-struct StockSummaryModelMajorHoldersBreakdown: Codable, Hashable {
+struct ApiStockSummaryModelMajorHoldersBreakdown: Codable, Hashable {
     let maxAge: Int?
-    let insidersPercentHeld, institutionsPercentHeld, institutionsFloatPercentHeld: StockSummaryModelDividendDate?
-    let institutionsCount: StockSummaryModelEnterpriseValue?
+    let insidersPercentHeld, institutionsPercentHeld, institutionsFloatPercentHeld: ApiStockSummaryModelDividendDate?
+    let institutionsCount: ApiStockSummaryModelEnterpriseValue?
 }
 
 //
@@ -458,15 +458,15 @@ struct StockSummaryModelMajorHoldersBreakdown: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelNetSharePurchaseActivity
-struct StockSummaryModelNetSharePurchaseActivity: Codable, Hashable {
+struct ApiStockSummaryModelNetSharePurchaseActivity: Codable, Hashable {
     let period: String?
-    let netPercentInsiderShares: StockSummaryModelDividendDate?
-    let netInfoCount, totalInsiderShares, buyInfoShares: StockSummaryModelEnterpriseValue?
-    let buyPercentInsiderShares: StockSummaryModelDividendDate?
-    let sellInfoCount, sellInfoShares: StockSummaryModelEnterpriseValue?
-    let sellPercentInsiderShares: StockSummaryModelDividendDate?
+    let netPercentInsiderShares: ApiStockSummaryModelDividendDate?
+    let netInfoCount, totalInsiderShares, buyInfoShares: ApiStockSummaryModelEnterpriseValue?
+    let buyPercentInsiderShares: ApiStockSummaryModelDividendDate?
+    let sellInfoCount, sellInfoShares: ApiStockSummaryModelEnterpriseValue?
+    let sellPercentInsiderShares: ApiStockSummaryModelDividendDate?
     let maxAge: Int?
-    let buyInfoCount, netInfoShares: StockSummaryModelEnterpriseValue?
+    let buyInfoCount, netInfoShares: ApiStockSummaryModelEnterpriseValue?
 }
 
 //
@@ -476,7 +476,7 @@ struct StockSummaryModelNetSharePurchaseActivity: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelPageViews
-struct StockSummaryModelPageViews: Codable, Hashable {
+struct ApiStockSummaryModelPageViews: Codable, Hashable {
     let shortTermTrend, midTermTrend, longTermTrend: String?
     let maxAge: Int?
 }
@@ -488,44 +488,44 @@ struct StockSummaryModelPageViews: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelPrice
-struct StockSummaryModelPrice: Codable, Hashable {
+struct ApiStockSummaryModelPrice: Codable, Hashable {
     let quoteSourceName: String?
-    let regularMarketOpen: StockSummaryModelDividendDate?
-    let averageDailyVolume3Month: StockSummaryModelEnterpriseValue?
+    let regularMarketOpen: ApiStockSummaryModelDividendDate?
+    let averageDailyVolume3Month: ApiStockSummaryModelEnterpriseValue?
     let exchange: String?
     let regularMarketTime: Int?
-    let volume24Hr: StockSummaryModelDetails?
-    let regularMarketDayHigh: StockSummaryModelDividendDate?
+    let volume24Hr: ApiStockSummaryModelDetails?
+    let regularMarketDayHigh: ApiStockSummaryModelDividendDate?
     let shortName: String?
-    let averageDailyVolume10Day: StockSummaryModelEnterpriseValue?
+    let averageDailyVolume10Day: ApiStockSummaryModelEnterpriseValue?
     let longName: String?
-    let regularMarketChange: StockSummaryModelDividendDate?
+    let regularMarketChange: ApiStockSummaryModelDividendDate?
     let currencySymbol: String?
-    let regularMarketPreviousClose, preMarketPrice: StockSummaryModelDividendDate?
+    let regularMarketPreviousClose, preMarketPrice: ApiStockSummaryModelDividendDate?
     let preMarketTime, exchangeDataDelayedBy: Int?
 //    let toCurrency: JSONNull?
-    let postMarketChange, postMarketPrice: StockSummaryModelDetails?
+    let postMarketChange, postMarketPrice: ApiStockSummaryModelDetails?
     let exchangeName: String?
-    let preMarketChange: StockSummaryModelDividendDate?
-    let circulatingSupply: StockSummaryModelDetails?
-    let regularMarketDayLow: StockSummaryModelDividendDate?
-    let priceHint: StockSummaryModelEnterpriseValue?
+    let preMarketChange: ApiStockSummaryModelDividendDate?
+    let circulatingSupply: ApiStockSummaryModelDetails?
+    let regularMarketDayLow: ApiStockSummaryModelDividendDate?
+    let priceHint: ApiStockSummaryModelEnterpriseValue?
     let currency: String?
-    let regularMarketPrice: StockSummaryModelDividendDate?
-    let regularMarketVolume: StockSummaryModelEnterpriseValue?
+    let regularMarketPrice: ApiStockSummaryModelDividendDate?
+    let regularMarketVolume: ApiStockSummaryModelEnterpriseValue?
 //    let lastMarket: JSONNull?
     let regularMarketSource: String?
-    let openInterest: StockSummaryModelDetails?
+    let openInterest: ApiStockSummaryModelDetails?
     let marketState: String?
 //    let underlyingSymbol: JSONNull?
-    let marketCap: StockSummaryModelEnterpriseValue?
+    let marketCap: ApiStockSummaryModelEnterpriseValue?
     let quoteType: String?
-    let preMarketChangePercent: StockSummaryModelDividendDate?
-    let volumeAllCurrencies, strikePrice: StockSummaryModelDetails?
+    let preMarketChangePercent: ApiStockSummaryModelDividendDate?
+    let volumeAllCurrencies, strikePrice: ApiStockSummaryModelDetails?
     let symbol, preMarketSource: String?
     let maxAge: Int?
 //    let fromCurrency: JSONNull?
-    let regularMarketChangePercent: StockSummaryModelDividendDate?
+    let regularMarketChangePercent: ApiStockSummaryModelDividendDate?
 }
 
 //
@@ -535,7 +535,7 @@ struct StockSummaryModelPrice: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelQuoteType
-struct StockSummaryModelQuoteType: Codable, Hashable {
+struct ApiStockSummaryModelQuoteType: Codable, Hashable {
     let exchange: String
     let shortName, longName, exchangeTimezoneName: String?
     let exchangeTimezoneShortName: String?
@@ -557,8 +557,8 @@ struct StockSummaryModelQuoteType: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelRecommendationTrend
-struct StockSummaryModelRecommendationTrend: Codable, Hashable {
-    let trend: [StockSummaryModelTrend]?
+struct ApiStockSummaryModelRecommendationTrend: Codable, Hashable {
+    let trend: [ApiStockSummaryModelTrend]?
     let maxAge: Int?
 }
 
@@ -569,7 +569,7 @@ struct StockSummaryModelRecommendationTrend: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelTrend
-struct StockSummaryModelTrend: Codable, Hashable {
+struct ApiStockSummaryModelTrend: Codable, Hashable {
     let period: String?
     let strongBuy, buy, hold, sell: Int?
     let strongSell: Int?
@@ -582,42 +582,42 @@ struct StockSummaryModelTrend: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelSummaryDetail
-struct StockSummaryModelSummaryDetail: Codable, Hashable {
-    let previousClose, regularMarketOpen, twoHundredDayAverage, trailingAnnualDividendYield: StockSummaryModelDividendDate?
-    let payoutRatio: StockSummaryModelDividendDate?
-    let volume24Hr: StockSummaryModelDetails?
-    let regularMarketDayHigh: StockSummaryModelDividendDate?
-    let navPrice: StockSummaryModelDetails?
-    let averageDailyVolume10Day: StockSummaryModelEnterpriseValue?
-    let totalAssets: StockSummaryModelDetails?
-    let regularMarketPreviousClose, fiftyDayAverage, trailingAnnualDividendRate, summaryDetailOpen: StockSummaryModelDividendDate?
+struct ApiStockSummaryModelSummaryDetail: Codable, Hashable {
+    let previousClose, regularMarketOpen, twoHundredDayAverage, trailingAnnualDividendYield: ApiStockSummaryModelDividendDate?
+    let payoutRatio: ApiStockSummaryModelDividendDate?
+    let volume24Hr: ApiStockSummaryModelDetails?
+    let regularMarketDayHigh: ApiStockSummaryModelDividendDate?
+    let navPrice: ApiStockSummaryModelDetails?
+    let averageDailyVolume10Day: ApiStockSummaryModelEnterpriseValue?
+    let totalAssets: ApiStockSummaryModelDetails?
+    let regularMarketPreviousClose, fiftyDayAverage, trailingAnnualDividendRate, summaryDetailOpen: ApiStockSummaryModelDividendDate?
 //    let toCurrency: JSONNull?
-    let averageVolume10Days: StockSummaryModelEnterpriseValue?
-    let expireDate, yield: StockSummaryModelDetails?
+    let averageVolume10Days: ApiStockSummaryModelEnterpriseValue?
+    let expireDate, yield: ApiStockSummaryModelDetails?
 //    let algorithm: JSONNull?
-    let dividendRate, exDividendDate, beta: StockSummaryModelDividendDate?
-    let circulatingSupply, startDate: StockSummaryModelDetails?
-    let regularMarketDayLow: StockSummaryModelDividendDate?
-    let priceHint: StockSummaryModelEnterpriseValue?
+    let dividendRate, exDividendDate, beta: ApiStockSummaryModelDividendDate?
+    let circulatingSupply, startDate: ApiStockSummaryModelDetails?
+    let regularMarketDayLow: ApiStockSummaryModelDividendDate?
+    let priceHint: ApiStockSummaryModelEnterpriseValue?
     let currency: String
-    let trailingPE: StockSummaryModelDividendDate?
-    let regularMarketVolume: StockSummaryModelEnterpriseValue?
+    let trailingPE: ApiStockSummaryModelDividendDate?
+    let regularMarketVolume: ApiStockSummaryModelEnterpriseValue?
 //    let lastMarket: JSONNull?
-    let maxSupply, openInterest: StockSummaryModelDetails?
-    let marketCap: StockSummaryModelEnterpriseValue?
-    let volumeAllCurrencies, strikePrice: StockSummaryModelDetails?
-    let averageVolume: StockSummaryModelEnterpriseValue?
-    let priceToSalesTrailing12Months, dayLow, ask: StockSummaryModelDividendDate?
-    let ytdReturn: StockSummaryModelDetails?
-    let askSize, volume: StockSummaryModelEnterpriseValue?
-    let fiftyTwoWeekHigh, forwardPE: StockSummaryModelDividendDate?
+    let maxSupply, openInterest: ApiStockSummaryModelDetails?
+    let marketCap: ApiStockSummaryModelEnterpriseValue?
+    let volumeAllCurrencies, strikePrice: ApiStockSummaryModelDetails?
+    let averageVolume: ApiStockSummaryModelEnterpriseValue?
+    let priceToSalesTrailing12Months, dayLow, ask: ApiStockSummaryModelDividendDate?
+    let ytdReturn: ApiStockSummaryModelDetails?
+    let askSize, volume: ApiStockSummaryModelEnterpriseValue?
+    let fiftyTwoWeekHigh, forwardPE: ApiStockSummaryModelDividendDate?
     let maxAge: Int?
 //    let fromCurrency: JSONNull?
-    let fiveYearAvgDividendYield, fiftyTwoWeekLow, bid: StockSummaryModelDividendDate?
+    let fiveYearAvgDividendYield, fiftyTwoWeekLow, bid: ApiStockSummaryModelDividendDate?
     let tradeable: Bool?
-    let dividendYield: StockSummaryModelDividendDate?
-    let bidSize: StockSummaryModelEnterpriseValue?
-    let dayHigh: StockSummaryModelDividendDate?
+    let dividendYield: ApiStockSummaryModelDividendDate?
+    let bidSize: ApiStockSummaryModelEnterpriseValue?
+    let dayHigh: ApiStockSummaryModelDividendDate?
 //    let coinMarketCapLink: JSONNull?
 
     enum CodingKeys: String, CodingKey {
@@ -635,7 +635,7 @@ struct StockSummaryModelSummaryDetail: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelSummaryProfile
-struct StockSummaryModelSummaryProfile: Codable, Hashable {
+struct ApiStockSummaryModelSummaryProfile: Codable, Hashable {
     let zip, sector: String?
     let fullTimeEmployees: Int?
     let longBusinessSummary, city, phone, state: String?
@@ -653,8 +653,8 @@ struct StockSummaryModelSummaryProfile: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelUpgradeDowngradeHistory
-struct StockSummaryModelUpgradeDowngradeHistory: Codable, Hashable {
-    let history: [StockSummaryModelHistory]?
+struct ApiStockSummaryModelUpgradeDowngradeHistory: Codable, Hashable {
+    let history: [ApiStockSummaryModelHistory]?
     let maxAge: Int?
 }
 
@@ -665,14 +665,14 @@ struct StockSummaryModelUpgradeDowngradeHistory: Codable, Hashable {
 // synthesized for types that have collections (such as arrays or dictionaries).
 
 // MARK: - StockSummaryModelHistory
-struct StockSummaryModelHistory: Codable, Hashable {
+struct ApiStockSummaryModelHistory: Codable, Hashable {
     let epochGradeDate: Int?
     let firm: String?
-    let toGrade, fromGrade: StockSummaryModelGrade?
-    let action: StockSummaryModelAction?
+    let toGrade, fromGrade: ApiStockSummaryModelGrade?
+    let action: ApiStockSummaryModelAction?
 }
 
-enum StockSummaryModelAction: String, Codable, Hashable {
+enum ApiStockSummaryModelAction: String, Codable, Hashable {
     case actionInit = "init"
     case down = "down"
     case main = "main"
@@ -680,7 +680,7 @@ enum StockSummaryModelAction: String, Codable, Hashable {
     case up = "up"
 }
 
-enum StockSummaryModelGrade: String, Codable, Hashable {
+enum ApiStockSummaryModelGrade: String, Codable, Hashable {
     case accumulate = "Accumulate"
     case buy = "Buy"
     case empty = ""
