@@ -55,18 +55,18 @@ class StockDetailsViewController<VM: StockDetailsViewModelProtocol>: MvvmViewCon
             changeLabel.rx.text <- viewModel.change.map(Formatter.changeFormatter.format(from:))
             changeLabel.rx.textColor <- viewModel.change.map(Formatter.stockColor(from:))
 
-            onOpenLabel.rx.text <- viewModel.onOpen.map(dashIfEmpty)
-            highLabel.rx.text <- viewModel.high.map(dashIfEmpty)
-            lowLabel.rx.text <- viewModel.low.map(dashIfEmpty)
-            volumeLabel.rx.text <- viewModel.volume.map(dashIfEmpty)
-            peLabel.rx.text <- viewModel.pe.map(dashIfEmpty)
-            marketCapLabel.rx.text <- viewModel.marketCap.map(dashIfEmpty)
-            w25HLabel.rx.text <- viewModel.w52H.map(dashIfEmpty)
-            w25LLabel.rx.text <- viewModel.w52L.map(dashIfEmpty)
-            averageVolumeLabel.rx.text <- viewModel.averageVolume.map(dashIfEmpty)
-            yieldLabel.rx.text <- viewModel.yield.map(dashIfEmpty)
-            betaLabel.rx.text <- viewModel.beta.map(dashIfEmpty)
-            epsLabel.rx.text <- viewModel.eps.map(dashIfEmpty)
+            onOpenLabel.rx.text <- viewModel.onOpen.map(Converter.dashIfEmpty)
+            highLabel.rx.text <- viewModel.high.map(Converter.dashIfEmpty)
+            lowLabel.rx.text <- viewModel.low.map(Converter.dashIfEmpty)
+            volumeLabel.rx.text <- viewModel.volume.map(Converter.dashIfEmpty)
+            peLabel.rx.text <- viewModel.pe.map(Converter.dashIfEmpty)
+            marketCapLabel.rx.text <- viewModel.marketCap.map(Converter.dashIfEmpty)
+            w25HLabel.rx.text <- viewModel.w52H.map(Converter.dashIfEmpty)
+            w25LLabel.rx.text <- viewModel.w52L.map(Converter.dashIfEmpty)
+            averageVolumeLabel.rx.text <- viewModel.averageVolume.map(Converter.dashIfEmpty)
+            yieldLabel.rx.text <- viewModel.yield.map(Converter.dashIfEmpty)
+            betaLabel.rx.text <- viewModel.beta.map(Converter.dashIfEmpty)
+            epsLabel.rx.text <- viewModel.eps.map(Converter.dashIfEmpty)
 
             charts.chart <- viewModel.chart
             chartLoadingIndicator.rx.isAnimating <- viewModel.chartIsLoading
@@ -113,13 +113,6 @@ private extension StockDetailsViewController {
         let alpha = min(max(0, offset - hidden) / transactionLength, 1)
         titleLabel.alpha = alpha
         titleLabel.isHidden = offset < hidden
-    }
-
-    func dashIfEmpty(for text: String?) -> String {
-        guard let text
-        else { return "—" }
-
-        return text.isEmpty ? "—" : text
     }
 
     func setupCharts() {

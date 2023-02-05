@@ -7,8 +7,8 @@
 
 import Foundation
 
-class DelegateObject<Parent>: NSObject {
-    let parent: Parent
+class DelegateObject<Parent: AnyObject>: NSObject {
+    private(set) weak var parent: Parent!
 
     init(parent: Parent) {
         self.parent = parent
