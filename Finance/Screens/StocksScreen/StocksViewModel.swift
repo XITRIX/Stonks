@@ -57,7 +57,7 @@ class StocksViewModel: MvvmViewModel, StocksViewModelProtocol {
     func updateStocks(with stocks: [StockCellModel]) async {
         var temp = [StockCellModel]()
         for stock in stocks {
-            if let res = allStocks.value.get({ $0.symbol == stock.symbol }) {
+            if let res = allStocks.value.first(where: { $0.symbol == stock.symbol }) {
                 res.applyChanges(from: stock)
                 temp.append(res)
             } else {

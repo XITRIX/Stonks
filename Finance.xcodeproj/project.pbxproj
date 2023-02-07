@@ -36,7 +36,6 @@
 		7CC0478B298D1A850039B6D4 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC0478A298D1A850039B6D4 /* UILabel+Extensions.swift */; };
 		7CC0478D298D3DB60039B6D4 /* MvvmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC0478C298D3DB60039B6D4 /* MvvmTableViewCell.swift */; };
 		7CC0478F298D3F550039B6D4 /* StockCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC0478E298D3F550039B6D4 /* StockCellModel.swift */; };
-		7CC04791298D41BD0039B6D4 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC04790298D41BD0039B6D4 /* Array+Extensions.swift */; };
 		7CE9C8EC298BF8FC00FCD7F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE9C8EB298BF8FC00FCD7F8 /* AppDelegate.swift */; };
 		7CE9C8EE298BF8FC00FCD7F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE9C8ED298BF8FC00FCD7F8 /* SceneDelegate.swift */; };
 		7CE9C8F3298BF8FC00FCD7F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CE9C8F1298BF8FC00FCD7F8 /* Main.storyboard */; };
@@ -120,7 +119,6 @@
 		7CC0478A298D1A850039B6D4 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		7CC0478C298D3DB60039B6D4 /* MvvmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmTableViewCell.swift; sourceTree = "<group>"; };
 		7CC0478E298D3F550039B6D4 /* StockCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCellModel.swift; sourceTree = "<group>"; };
-		7CC04790298D41BD0039B6D4 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		7CE9C8E8298BF8FC00FCD7F8 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CE9C8EB298BF8FC00FCD7F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CE9C8ED298BF8FC00FCD7F8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 				7C01A52F298C6B770071364D /* Optional+String.swift */,
 				7CC04788298D16A20039B6D4 /* UITableView+Registration.swift */,
 				7CC0478A298D1A850039B6D4 /* UILabel+Extensions.swift */,
-				7CC04790298D41BD0039B6D4 /* Array+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -734,7 +731,6 @@
 				7C01A533298C70340071364D /* DelegateObject.swift in Sources */,
 				7C01A530298C6B770071364D /* Optional+String.swift in Sources */,
 				7CE9C952298C424F00FCD7F8 /* FinanceApi.swift in Sources */,
-				7CC04791298D41BD0039B6D4 /* Array+Extensions.swift in Sources */,
 				7C01A536298C88700071364D /* MvvmTableViewController.swift in Sources */,
 				7C9420D1298DA0100059CE14 /* ChartView.swift in Sources */,
 				7CC04789298D16A20039B6D4 /* UITableView+Registration.swift in Sources */,
