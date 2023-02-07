@@ -33,7 +33,7 @@ protocol FinanceApiProtocol {
 
 class FinanceApi: FinanceApiProtocol {
     private static let host = "yh-finance.p.rapidapi.com"
-    private static let apiKey = "ed039224e4mshf93dece37b683d7p144c69jsne0fa17366d3e"
+    private static let apiKey = "0e8db1f775msh113de098f3ec352p192cc2jsnfd80c97455e8"
 
     func getStocks() async throws -> [ApiMarketSummaryModel] {
         var components = urlBaseComponents
